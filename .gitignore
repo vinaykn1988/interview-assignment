@@ -1,0 +1,23 @@
+# Node / Next.js (frontend)
+node_modules/
+.next/
+out/
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+
+# Python / Django (backend)
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+env/
+*.egg-info/
+db.sqlite3
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

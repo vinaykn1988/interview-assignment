@@ -1,0 +1,33 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    image: interview-assignment-2-backend
+    container_name: interview-assignment-2-backend
+    hostname: interview-assignment-2-backend
+    entrypoint: ["/entrypoint.sh"]
+    volumes:
+      - ./backend:/app/src
+    ports:
+      - "9011:8000"
+      - "9012:8888"
+
+  frontend:
+    build:
+      context: ./frontend
+    image: interview-assignment-2-frontend
+    container_name: interview-assignment-2-frontend
+    hostname: interview-assignment-2-frontend
+    entrypoint: ["/entrypoint.sh"]
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "9010:3000"
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-s", "-o", "/dev/null", "http://localhost:3000"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 120s
